@@ -4,6 +4,7 @@ VCF files come in a variety of formats.  We often have to take vendor formats an
 1. Remove any records that don't have a FILTER of "PASS" or "LowGQX"
 1. The INFO column should only contain allele frequency, i.e. "AF={actual value}"
 1. The FORMAT column should only include the following values "GT:AD:DP"
+1. The final file should only have variant rows with an alternate allele.
 
 This wrapper project uses [PDM](https://pdm.fming.dev/latest/) Please reference that site for installation.  
 
