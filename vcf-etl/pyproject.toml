@@ -3,18 +3,17 @@ name = ""
 version = ""
 description = ""
 authors = [
-    {name = "Ryan", email = "ryan.ratcliff@lifeomic.com"},
+    {name = "Nick Gabry", email = "n.t.gabry@gmail.com"},
 ]
-license-expression = "MIT"
-dependencies = []
+dependencies = [
+    "pandas>=1.4.3",
+]
 requires-python = ">=3.9"
-
-[project.urls]
-Homepage = ""
+license = {text = "MIT"}
 
 [build-system]
-requires = ["pdm-pep440"]
-build-backend = "pdm.pep440.api"
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"
 
 [tool]
 [tool.pdm]
