@@ -1,0 +1,8 @@
+# VS Code settings
+.vscode
+
+# python cache
+*/__pycache__/
+
+# unit testing and coverage reports
+.coverage
