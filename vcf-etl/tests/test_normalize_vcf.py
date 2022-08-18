@@ -54,7 +54,7 @@ def test_remove_filter_not_pass_lowgqx(input_vcf_df):
     """remove_filter_not_pass_lowgqx"""
     # run remove_filter_not_pass_lowgqx on the test set
     actual_vcf_df = remove_filter_not_pass_lowgqx(input_vcf_df)
-    # expected series of #CHROM values
+    # expected and actual series of #CHROM values
     expected_chrom = pd.Series(["chr1", "chr2"], name="#CHROM")
     actual_chrom = actual_vcf_df["#CHROM"]
 
@@ -63,9 +63,17 @@ def test_remove_filter_not_pass_lowgqx(input_vcf_df):
     pd.testing.assert_series_equal(expected_chrom, actual_chrom)
 
 
-def test_reformat_info_af_only():
+def test_reformat_info_af_only(input_vcf_df):
     """reformat_info_af_only"""
-    pass
+    # run reformat_info_af_only on the test set
+    actual_vcf_df = reformat_info_af_only(input_vcf_df)
+    # expected and actual series of INFO values
+    expected_info = pd.Series(["AF1000G=0.494209", ".", "AF1000G=0.884585", "."], name="INFO")
+    actual_info = actual_vcf_df["INFO"]
+
+    # check that only specific allele frequencines are in INFO
+    assert len(actual_vcf_df) == 4
+    pd.testing.assert_series_equal(expected_info, actual_info)
 
 
 def test_reformat_format_gt_ad_dp():
