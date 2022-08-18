@@ -76,9 +76,17 @@ def test_reformat_info_af_only(input_vcf_df):
     pd.testing.assert_series_equal(expected_info, actual_info)
 
 
-def test_reformat_format_gt_ad_dp():
+def test_reformat_format_gt_ad_dp(input_vcf_df):
     """reformat_format_gt_ad_dp"""
-    pass
+    # run reformat_format_gt_ad_dp on test set
+    actual_vcf_df = reformat_format_gt_ad_dp(input_vcf_df)
+    # expected and actual series of FORMAT values
+    expected_format = pd.Series(["GT:AD:DP", "GT:DP", "GT:DP", "GT:DP:AD"], name="FORMAT")
+    actual_format = actual_vcf_df["FORMAT"]
+
+    # check that only GT:AD:DP in FORMAT column
+    assert len(actual_vcf_df) == 4
+    pd.testing.assert_series_equal(expected_format, actual_format)
 
 
 def test_remove_no_alternate_alleles():
