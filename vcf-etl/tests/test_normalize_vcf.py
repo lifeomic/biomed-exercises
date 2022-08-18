@@ -50,9 +50,17 @@ def test_read_vcf(input_minimal_vcf):
     assert pd.testing.assert_frame_equal(expected_vcf_data, actual_vcf_data)
 
 
-def test_remove_filter_not_pass_lowgqx():
+def test_remove_filter_not_pass_lowgqx(input_vcf_df):
     """remove_filter_not_pass_lowgqx"""
-    pass
+    # run remove_filter_not_pass_lowgqx on the test set
+    actual_vcf_df = remove_filter_not_pass_lowgqx(input_vcf_df)
+    # expected series of #CHROM values
+    expected_chrom = pd.Series(["chr1", "chr2"], name="#CHROM")
+    actual_chrom = actual_vcf_df["#CHROM"]
+
+    # check that rows 3 and 4 are dropped
+    assert len(actual_vcf_df) == 2
+    pd.testing.assert_series_equal(expected_chrom, actual_chrom)
 
 
 def test_reformat_info_af_only():
