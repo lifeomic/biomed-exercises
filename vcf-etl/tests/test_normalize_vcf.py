@@ -34,6 +34,30 @@ def test_read_vcf(input_minimal_vcf):
     assert pd.testing.assert_frame_equal(expected_vcf_data, actual_vcf_data)
 
 
+@pytest.fixture
+def input_vcf_no_norm_needed():
+    """creates a fake vcf DataFrame where no normalization is required"""
+    # construct DataFrame of vcf data
+    column_names = ["#CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT", "NA12878"]
+    vcf_data = pd.DataFrame(columns = column_names)
+    vcf_data.loc[0] = ["chr1", 1, ".", "A", "C", ".", "PASS", "AF1000G=0.494209", "GT:AD:DP", "0/0:15:6:0"]
+    vcf_data.loc[1] = ["chr2", 1, ".", "G", "A", ".", "LowGQX", ".", "GT:DP", "0/0:124:44:0"]
+
+    return vcf_data
+
+
+@pytest.fixture
+def input_vcf_need_norm():
+    """creates a fake vcf DataFrame where each variant requires normalization for each change"""
+    # construct DataFrame of vcf data
+    column_names = ["#CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT", "NA12878"]
+    vcf_data = pd.DataFrame(columns = column_names)
+    vcf_data.loc[0] = ["chr1", 1, ".", "A", ".", ".", "HighDPFRatio", "SNVHPOL=4;MQ=60;GMAF=G|0.1154;AF1000G=0.884585;phyloP=0.241", "GT:GQX:DP:DPF", "0/0:15:6:0"]
+    vcf_data.loc[1] = ["chr2", 1, ".", "G", ".", ".", "LowGQX;HighDPFRatio", "END=29094578;BLOCKAVG_min30p3a", "GT:GQ:GQX:DP:DPF:AD:ADF:ADR:SB:FT:PL", "0/0:124:44:0"]
+
+    return vcf_data
+
+
 def test_remove_filter_not_pass_lowgqx():
     """remove_filter_not_pass_lowgqx"""
     pass
