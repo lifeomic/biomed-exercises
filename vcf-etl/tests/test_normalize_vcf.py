@@ -89,9 +89,18 @@ def test_reformat_format_gt_ad_dp(input_vcf_df):
     pd.testing.assert_series_equal(expected_format, actual_format)
 
 
-def test_remove_no_alternate_alleles():
+def test_remove_no_alternate_alleles(input_vcf_df):
     """remove_no_alternate_alleles"""
-    pass
+    # run remove_no_alternate_alleles on test set
+    actual_vcf_df = remove_no_alternate_alleles(input_vcf_df)
+    # expected and actual series of #CHROM column
+    expected_chrom = pd.Series(["chr1", "chr2"], name="#CHROM")
+    actual_chrom = actual_vcf_df["#CHROM"]
+
+    # check that rows 3 and 4 are dropped
+    assert len(actual_vcf_df) == 2
+    pd.testing.assert_series_equal(expected_chrom, actual_chrom)
+
 
 
 def test_write_vcf():
