@@ -84,4 +84,18 @@ def write_vcf(vcf_meta_info, vcf_data, vcf_out: str):
 
 
 def normalize_vcf(vcf_in: str, vcf_out: str):
-    pass
+    """normalize vcf"""
+    # read vcf
+    vcf_meta, vcf_data = read_vcf(vcf_in)
+
+    # remove records where FILTER is not PASS or LowGQX
+    vcf_data = remove_filter_not_pass_lowgqx(vcf_data=vcf_data)
+    # remove variant rows with no alternate allele
+    vcf_data = remove_no_alternate_alleles(vcf_data=vcf_data)
+    # reformat INFO to only contain specific allele frequency
+    vcf_data = reformat_info_af_only(vcf_data=vcf_data)
+    # reformat FORMAT to only include GT:AD:AP
+    vcf_data = reformat_format_gt_ad_dp(vcf_data=vcf_data)
+
+    # write vcf
+    write_vcf(vcf_meta_info=vcf_meta, vcf_data=vcf_data, vcf_out=vcf_out)
