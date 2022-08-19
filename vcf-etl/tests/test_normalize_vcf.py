@@ -1,5 +1,7 @@
 import pytest
 import pandas as pd
+import filecmp
+import os
 from src.normalize_vcf import normalize_vcf
 from src.normalize_vcf import read_vcf
 from src.normalize_vcf import remove_filter_not_pass_lowgqx
@@ -103,9 +105,18 @@ def test_remove_no_alternate_alleles(input_vcf_df):
 
 
 
-def test_write_vcf():
+def test_write_vcf(input_minimal_vcf):
     """write_vcf"""
-    pass
+    input_meta_lines, input_vcf_data = input_minimal_vcf
+    # run write_vcf
+    write_vcf(vcf_meta_info=input_meta_lines, vcf_data=input_vcf_data, vcf_out="data/minimal_test_write_vcf.vcf")
+
+    # compare the written minimal test file to the available minimal file
+    assert os.path.exists("data/minimal_test_write_vcf.vcf")
+    assert filecmp.cmp("data/minimal.vcf", "data/minimal_test_write_vcf.vcf", shallow=False)
+
+    # remove the written test file
+    os.remove("data/minimal_test_write_vcf.vcf")
 
 
 def test_normalize_vcf():
