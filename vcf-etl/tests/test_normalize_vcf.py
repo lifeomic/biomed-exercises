@@ -49,7 +49,7 @@ def test_read_vcf(input_minimal_vcf):
 
     # check that the outputs of read_vcf match the expected
     assert expected_meta_lines == actual_meta_lines
-    assert pd.testing.assert_frame_equal(expected_vcf_data, actual_vcf_data)
+    pd.testing.assert_frame_equal(expected_vcf_data, actual_vcf_data)
 
 
 def test_remove_filter_not_pass_lowgqx(input_vcf_df):
