@@ -1,9 +1,24 @@
 import logging
+import pandas as pd
 
 
 def read_vcf(vcf_in: str):
     """Read VCF file as pandas DataFrame"""
-    pass
+    # read meta info lines and join by new lines and header line
+    with open(vcf_in) as file:
+        meta_lines = []
+        header_line = []
+        for line in file:
+            if line.startswith("##"):
+                meta_lines.append(line.rstrip())
+            elif line.startswith("#CHROM"):
+                header_line.append(line.rstrip())
+        meta_lines = "\n".join(meta_lines)
+        header_line = header_line[0].split("\t")
+    # read vcf data into a DataFrame
+    vcf_data = pd.read_csv(vcf_in, names=header_line, sep="\t", comment="#")
+    
+    return meta_lines, vcf_data
 
 
 def remove_filter_not_pass_lowgqx(vcf_data):
@@ -32,5 +47,4 @@ def write_vcf(vcf_meta_info, vcf_data, vcf_out: str):
 
 
 def normalize_vcf(vcf_in: str, vcf_out: str):
-    print("Hello World")
-    return "Hello World"
+    read_vcf(vcf_in)
