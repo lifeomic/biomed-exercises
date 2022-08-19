@@ -23,7 +23,13 @@ def read_vcf(vcf_in: str):
 
 def remove_filter_not_pass_lowgqx(vcf_data):
     """Remove any records that don't have a FILTER of 'PASS' or 'LowGQX'"""
-    pass
+    # set values that are allowed for FILTER
+    allowed_filter_values = ["PASS", "LowGQX"]
+
+    # remove rows not in allowed FILTER values
+    vcf_data_filtered = vcf_data.loc[vcf_data["FILTER"].isin(allowed_filter_values)]
+
+    return vcf_data_filtered
 
 
 def reformat_info_af_only(vcf_data):
