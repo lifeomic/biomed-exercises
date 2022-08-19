@@ -1,5 +1,6 @@
 import logging
 import pandas as pd
+import re
 
 
 def read_vcf(vcf_in: str):
@@ -34,7 +35,24 @@ def remove_filter_not_pass_lowgqx(vcf_data):
 
 def reformat_info_af_only(vcf_data):
     """The INFO column should only contain this variant's specific allele frequency, i.e. 'AF={actual value}'"""
-    pass
+    def match_af(info):
+        """use a regular expression to match specific allele frquency i.e. AF={actual value}"""
+        # split info into a list
+        info_list = info.split(";")
+        # setup the regular expression pattern
+        string_pattern = "^AF"
+        regex_pattern = re.compile(string_pattern)
+        # match info list with regex pattern
+        af_list = list(filter(regex_pattern.match, info_list))
+        # convert allele frequency to a string or "." if there was no match for allele frequency
+        allele_frequency = "".join(af_list) if af_list else "."
+
+        return allele_frequency
+
+
+    vcf_data["INFO"] = vcf_data["INFO"].apply(match_af)
+
+    return vcf_data
 
 
 def reformat_format_gt_ad_dp(vcf_data):
