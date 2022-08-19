@@ -5,19 +5,23 @@ import re
 
 def read_vcf(vcf_in: str):
     """Read VCF file as pandas DataFrame"""
-    # read meta info lines and join by new lines and header line
+    # read meta info lines and header line
     with open(vcf_in) as file:
         meta_lines = []
         header_line = []
         for line in file:
+            # store meta info lines in a list (these start with "##")
             if line.startswith("##"):
                 meta_lines.append(line.rstrip())
+            # store header line in a list (this starts with "#CHROM")
             elif line.startswith("#CHROM"):
                 header_line.append(line.rstrip())
+        # store meta lines as a string
         meta_lines = "\n".join(meta_lines)
+        # generate list from header
         header_line = header_line[0].split("\t")
-    # read vcf data into a DataFrame
-    vcf_data = pd.read_csv(vcf_in, names=header_line, sep="\t", comment="#")
+    # read vcf data into a DataFrame and skip meta info and header lines
+    vcf_data = pd.read_csv(vcf_in, names=header_line, sep="\t", comment="#", on_bad_lines="warn")
     
     return meta_lines, vcf_data
 
