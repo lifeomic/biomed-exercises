@@ -43,8 +43,13 @@ def remove_no_alternate_alleles(vcf_data):
 
 def write_vcf(vcf_meta_info, vcf_data, vcf_out: str):
     """Write vcf to output file"""
-    pass
+    # open output file
+    with open(vcf_out, "w") as file:
+        # write meta info lines
+        file.write(vcf_meta_info + "\n")
+    # append header and vcf data to file
+    vcf_data.to_csv(vcf_out, mode="a", index=False, sep="\t")
 
 
 def normalize_vcf(vcf_in: str, vcf_out: str):
-    read_vcf(vcf_in)
+    pass
