@@ -39,7 +39,12 @@ def reformat_info_af_only(vcf_data):
 
 def reformat_format_gt_ad_dp(vcf_data):
     """The FORMAT column should only include the following values 'GT:AD:DP'"""
-    pass
+    # set values that are allowed for FORMAT
+    allowed_format_values = ["GT", "AD", "DP"]
+
+    vcf_data["FORMAT"] = vcf_data["FORMAT"].apply(lambda x: ":".join([form for form in x.split(":") if form in allowed_format_values]))
+
+    return vcf_data
 
 
 def remove_no_alternate_alleles(vcf_data):
