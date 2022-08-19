@@ -120,5 +120,13 @@ def test_write_vcf(input_minimal_vcf):
 
 
 def test_normalize_vcf():
-    actual = normalize_vcf("file-in", "file-out")
-    assert actual == "Hello World"
+    """full normalize vcf"""
+    # run the full normalize_vcf function
+    normalize_vcf("data/full_test.vcf", "data/full_test_normalize_vcf.vcf")
+
+    # compare the written normalized full test file to the manually generated normalized file
+    assert os.path.exists("data/full_test_normalize_vcf.vcf")
+    assert filecmp.cmp("data/full_test_normalized.vcf", "data/full_test_normalize_vcf.vcf")
+
+    # remove the written test file
+    os.remove("data/full_test_normalize_vcf.vcf")
