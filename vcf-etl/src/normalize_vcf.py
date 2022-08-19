@@ -44,7 +44,10 @@ def reformat_format_gt_ad_dp(vcf_data):
 
 def remove_no_alternate_alleles(vcf_data):
     """The final file should only have variant rows with an alternate allele."""
-    pass
+    # remove rows with no alternate alleles
+    vcf_data_filtered = vcf_data.loc[vcf_data["ALT"] != "."]
+
+    return vcf_data_filtered
 
 
 def write_vcf(vcf_meta_info, vcf_data, vcf_out: str):
