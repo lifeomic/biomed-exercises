@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: vcf-etl
+Version: 1.0
+Author-email: Ryan <ryan.ratcliff@lifeomic.com>, Tomas <tkanholm@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/lifeomic/biomed-exercises
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: pip>=23.3.1
+Requires-Dist: click>=8.1.7
+Requires-Dist: pytest>=7.4.3
+Requires-Dist: pytest-cov>=4.1.0
+
+# VCF Transformation
+
+VCF files come in a variety of formats.  We often have to take vendor formats and transform them in small and large ways to create a common VCF format for our system.  An example VCF file is provided in the "/data" directory.  To normalize this file 4 changes need to be done to it
+1. Remove any records that don't have a FILTER of "PASS" or "LowGQX"
+1. The INFO column should only contain this variant's specific allele frequency, i.e. "AF={actual value}"
+1. The FORMAT column should only include the following values "GT:AD:DP"
+1. The final file should only have variant rows with an alternate allele.
+
+This wrapper project uses [PDM](https://pdm.fming.dev/latest/) Please reference that site for installation.  
+
+Once properly installed and coded, users should be able to run
+1. "pdm run process normalize {in-file} {out-file}" to execute the scripts
+1. "pdm run test" to run all unit tests
+
+Please clone this repo and add your changes to the clone.  Then generate a pull request with your updates.  If you're unable to create a github account, you may also zip up the project and send it to your point of contact.
+
+FAQ
+* Feel free to add any additional libraries 
+* Please add the level of unit tests deemed necessary for proper code coverage

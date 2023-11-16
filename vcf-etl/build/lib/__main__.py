@@ -1,4 +1,4 @@
-from cli import cli
+from .cli import cli
 import logging
 import sys
 

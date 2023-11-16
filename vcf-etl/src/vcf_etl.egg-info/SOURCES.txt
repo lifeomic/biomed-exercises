@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/__init__.py
+src/__main__.py
+src/cli.py
+src/normalize_vcf.py
+src/example_package/__init__.py
+src/vcf_etl.egg-info/PKG-INFO
+src/vcf_etl.egg-info/SOURCES.txt
+src/vcf_etl.egg-info/dependency_links.txt
+src/vcf_etl.egg-info/requires.txt
+src/vcf_etl.egg-info/top_level.txt
+tests/test_normalize_vcf.py

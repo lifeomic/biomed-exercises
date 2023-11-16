@@ -1,20 +1,23 @@
 [project]
-name = ""
-version = ""
+name = "vcf-etl"
+version = "1.0"
 description = ""
 authors = [
     {name = "Ryan", email = "ryan.ratcliff@lifeomic.com"},
+    {name = "Tomas", email = "tkanholm@gmail.com"},
 ]
-license-expression = "MIT"
-dependencies = []
+dependencies = [
+    "pip>=23.3.1",
+    "click>=8.1.7",
+    "pytest>=7.4.3",
+    "pytest-cov>=4.1.0",
+]
 requires-python = ">=3.9"
+readme = "README.md"
+license = {text = "MIT"}
 
 [project.urls]
-Homepage = ""
-
-[build-system]
-requires = ["pdm-pep440"]
-build-backend = "pdm.pep440.api"
+Homepage = "https://github.com/lifeomic/biomed-exercises"
 
 [tool]
 [tool.pdm]

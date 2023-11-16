@@ -1,7 +1,7 @@
 from typing import List
 import click
 
-from .normalize_vcf import normalize_vcf
+from normalize_vcf import normalize_vcf
 
 
 @click.group()
@@ -13,4 +13,11 @@ def cli():
 @click.argument("vcf_out", required=True)
 @click.argument("vcf_in", required=True)
 def normalize(vcf_in: str, vcf_out: str):
-    normalize_vcf(vcf_in, vcf_out)
+    output = normalize_vcf(vcf_in, vcf_out)
+    print("Writing to file " + vcf_out)
+    f = open(vcf_out, "w")
+    f.write(output)
+    f.close()
+    print("Finished")
+    return
+
