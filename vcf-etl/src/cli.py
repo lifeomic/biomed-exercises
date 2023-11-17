@@ -10,7 +10,8 @@ def cli():
 
 
 @cli.command()
-@click.argument("vcf_out", required=True)
 @click.argument("vcf_in", required=True)
+@click.argument("vcf_out", required=True)
+
 def normalize(vcf_in: str, vcf_out: str):
     normalize_vcf(vcf_in, vcf_out)
