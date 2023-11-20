@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform"]
 lock_version = "4.4"
-content_hash = "sha256:6ff244e85eff16623d749adcf7db6e02aac43ee237521771962d61a19044b0dd"
+content_hash = "sha256:57560d0917431a8b39d24e0de46d751c27f08bbc8bcb055d8759fb232ef5b9d3"
 
 [[package]]
 name = "atomicwrites"
@@ -339,7 +339,7 @@ files = [
 
 [[package]]
 name = "pytest"
-version = "6.2.0"
+version = "6.2.5"
 requires_python = ">=3.6"
 summary = "pytest: simple powerful testing with Python"
 dependencies = [
@@ -348,13 +348,13 @@ dependencies = [
     "colorama; sys_platform == \"win32\"",
     "iniconfig",
     "packaging",
-    "pluggy<1.0.0a1,>=0.12",
+    "pluggy<2.0,>=0.12",
     "py>=1.8.2",
     "toml",
 ]
 files = [
-    {file = "pytest-6.2.0-py3-none-any.whl", hash = "sha256:d69e1a80b34fe4d596c9142f35d9e523d98a2838976f1a68419a8f051b24cec6"},
-    {file = "pytest-6.2.0.tar.gz", hash = "sha256:b12e09409c5bdedc28d308469e156127004a436b41e9b44f9bff6446cbab9152"},
+    {file = "pytest-6.2.5-py3-none-any.whl", hash = "sha256:7310f8d27bc79ced999e760ca304d69f6ba6c6649c0b60fb0e04a4a77cacc134"},
+    {file = "pytest-6.2.5.tar.gz", hash = "sha256:131b36680866a76e6781d13f101efb86cf674ebb9762eb70d3082b6f29889e89"},
 ]
 
 [[package]]
