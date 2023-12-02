@@ -1,12 +1,15 @@
 [project]
-name = ""
+name = "Normalize VCF"
 version = ""
-description = ""
+description = "Coding exercise for Fountain Life."
 authors = [
     {name = "Ryan", email = "ryan.ratcliff@lifeomic.com"},
+    {name = "Slav Kendall", email = "sviatoslav.kendall@gmail.com"}
 ]
 license-expression = "MIT"
-dependencies = []
+dependencies = [
+    "pandas>=2.1.3",
+]
 requires-python = ">=3.9"
 
 [project.urls]
@@ -20,7 +23,7 @@ build-backend = "pdm.pep440.api"
 [tool.pdm]
 [tool.pdm.dev-dependencies]
 dev = [
-    "pytest==6.2",
+    "pytest==7.4.3",
     "pytest-cov==2.12",
     "black==22.3.0"
 ]
