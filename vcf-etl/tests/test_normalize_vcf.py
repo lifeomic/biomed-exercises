@@ -66,11 +66,8 @@ def test_normalize_vcf(mock_replace_format, mock_replace_with_AF, mock_readvcf):
     if os.path.exists('output.vcf'):
         print('found................................................')
     # Assertions
-    #mock_read_csv.assert_called_once_with('input.vcf', sep='\t', comment='#')
-    #mock_replace_with_AF.assert_called()
-   # mock_replace_format.assert_called()
-    #mock_to_csv.assert_called_once_with('output.vcf', sep='\t', index=False)
-    #with patch('pandas.read_csv', wraps=pd.read_csv):
+    mock_replace_with_AF.assert_called()
+    mock_replace_format.assert_called()
     output_df = pd.read_csv('output.vcf', sep='\t', comment='#')
     assert len(output_df) == 2
     assert (output_df['INFO'] == 'AF=0.05').all()
