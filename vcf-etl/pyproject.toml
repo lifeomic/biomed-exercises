@@ -3,7 +3,7 @@ name = ""
 version = ""
 description = ""
 authors = [
-    {name = "Ryan", email = "ryan.ratcliff@lifeomic.com"},
+    { name = "LifeOmic Development", email = "development@lifeomic.com" },
 ]
 license-expression = "MIT"
 dependencies = []
